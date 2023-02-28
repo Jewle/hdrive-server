@@ -1,0 +1,6 @@
+1. Uploader
+2. Folders drag n drop or better
+3. Modal more info
+4. Registration
+5. Sharing private link
+6. Recycle

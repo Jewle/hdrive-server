@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="4bbda350-afa8-4f2e-9939-808a0b02e1b8" name="Default Changelist" comment="" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="HTML File" />
+        <option value="JavaScript File" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="1v3PQIF1YIQCOOqSts9dBBg7wx5" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="PropertiesComponent">
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../jslearn/wp-tests" />
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="4bbda350-afa8-4f2e-9939-808a0b02e1b8" name="Default Changelist" comment="" />
+      <created>1625787781561</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1625787781561</updated>
+      <workItem from="1625787785680" duration="854000" />
+      <workItem from="1625863558076" duration="1987000" />
+      <workItem from="1625867507954" duration="3560000" />
+      <workItem from="1625953904014" duration="1813000" />
+      <workItem from="1626283690964" duration="12854000" />
+      <workItem from="1626383609109" duration="2699000" />
+      <workItem from="1626472196791" duration="1872000" />
+      <workItem from="1627111483746" duration="78000" />
+      <workItem from="1627372753946" duration="5837000" />
+      <workItem from="1627412315735" duration="10374000" />
+      <workItem from="1627458470850" duration="6721000" />
+      <workItem from="1627510881100" duration="4008000" />
+      <workItem from="1627569414214" duration="1279000" />
+      <workItem from="1627731244145" duration="4745000" />
+      <workItem from="1627752681150" duration="8604000" />
+      <workItem from="1627770456033" duration="1949000" />
+      <workItem from="1627773396895" duration="1375000" />
+      <workItem from="1627805535080" duration="3381000" />
+      <workItem from="1627855921621" duration="1533000" />
+      <workItem from="1627858064840" duration="514000" />
+      <workItem from="1627936304010" duration="4960000" />
+      <workItem from="1628028848740" duration="119000" />
+      <workItem from="1629049774047" duration="14000" />
+      <workItem from="1630361864747" duration="1837000" />
+      <workItem from="1631399691772" duration="5197000" />
+      <workItem from="1633083804253" duration="47000" />
+      <workItem from="1633468379082" duration="23000" />
+      <workItem from="1633558013198" duration="2252000" />
+      <workItem from="1634763845229" duration="2992000" />
+      <workItem from="1634801695508" duration="5207000" />
+      <workItem from="1634997100751" duration="2687000" />
+      <workItem from="1635876227607" duration="8000" />
+      <workItem from="1636320636329" duration="3705000" />
+      <workItem from="1636404564941" duration="153000" />
+      <workItem from="1643100133740" duration="269000" />
+      <workItem from="1643100476712" duration="3465000" />
+      <workItem from="1643143171893" duration="3195000" />
+      <workItem from="1643234359320" duration="1356000" />
+      <workItem from="1643493361297" duration="138000" />
+      <workItem from="1647327509437" duration="3004000" />
+      <workItem from="1647550729746" duration="2068000" />
+      <workItem from="1647607185002" duration="2888000" />
+      <workItem from="1651757540578" duration="100000" />
+      <workItem from="1651784396464" duration="90000" />
+      <workItem from="1651784566565" duration="237000" />
+      <workItem from="1652821817569" duration="103000" />
+      <workItem from="1654294189628" duration="1529000" />
+      <workItem from="1654382146731" duration="2795000" />
+      <workItem from="1659824372000" duration="1832000" />
+      <workItem from="1661201879970" duration="1807000" />
+      <workItem from="1661461104390" duration="2147000" />
+      <workItem from="1661972969435" duration="199000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" log-message="true" suspend="NONE" type="javascript">
+          <url>file://$PROJECT_DIR$/tester/script.js</url>
+          <line>98</line>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+</project>

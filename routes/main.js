@@ -39,6 +39,8 @@ router.post('/upload', upload, async (req,res)=>{
 })
 
 router.get('/files', async (req,res)=>{
+	res.json({msg:'YEWS'})
+	return
 	const page = req.query.page || 0
 	const limit = 6
 	const offset = limit*(page-1)

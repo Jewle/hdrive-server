@@ -39,14 +39,15 @@ router.post('/upload', upload, async (req,res)=>{
 })
 
 router.get('/files', async (req,res)=>{
-	res.json({msg:'YEWS'})
-	return
+	
 	const page = req.query.page || 0
 	const limit = 6
 	const offset = limit*(page-1)
 
-
+	 res.json({user:req.user})
+	return
     const id =  req.user._id
+   
     const files = await File.find({userId:id}, 'originalName type urlUnencoded imgSrc').skip(offset).limit(limit)
     // const observableFiles = await User.findById(id,'_id').populate('filesToWatch','originalName type urlUnencoded imgSrc')
     const countDocuments = await File.countDocuments({userId:id})

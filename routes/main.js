@@ -55,6 +55,8 @@ router.get('/files', async (req,res)=>{
 })
 //fix little bit
 router.get('/file', async (req,res)=>{
+	res.json({msg:'works'})
+	return
     const {id} = req.query
     const userId =  req.user._id
     const file = await File.findOne({_id:id}).populate('userId','name _id')

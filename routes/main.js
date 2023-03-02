@@ -44,11 +44,12 @@ router.get('/files', async (req,res)=>{
 	const limit = 6
 	const offset = limit*(page-1)
 
-	 res.json({user:req.user})
-	return
+	 
     const id =  req.user._id
    
     const files = await File.find({userId:id}, 'originalName type urlUnencoded imgSrc').skip(offset).limit(limit)
+    res.json({files})
+	return
     // const observableFiles = await User.findById(id,'_id').populate('filesToWatch','originalName type urlUnencoded imgSrc')
     const countDocuments = await File.countDocuments({userId:id})
     const pages = Math.ceil(countDocuments/limit)

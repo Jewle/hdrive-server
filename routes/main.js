@@ -46,8 +46,6 @@ router.get('/files', async (req,res)=>{
 
 	 
     const id =  req.user._id
-   res.json({File, msg:'Where is the file'})
-	return
     const files = await File.find({userId:id}, 'originalName type urlUnencoded imgSrc').skip(offset).limit(limit)
     
     // const observableFiles = await User.findById(id,'_id').populate('filesToWatch','originalName type urlUnencoded imgSrc')
@@ -59,8 +57,6 @@ router.get('/files', async (req,res)=>{
 })
 //fix little bit
 router.get('/file', async (req,res)=>{
-	res.json({msg:'works'})
-	return
     const {id} = req.query
     const userId =  req.user._id
     const file = await File.findOne({_id:id}).populate('userId','name _id')

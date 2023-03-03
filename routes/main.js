@@ -46,7 +46,7 @@ router.get('/files', async (req,res)=>{
 
 	 
     const id =  req.user._id
-   res.json({File})
+   res.json({File, msg:'Where is the file'})
 	return
     const files = await File.find({userId:id}, 'originalName type urlUnencoded imgSrc').skip(offset).limit(limit)
     

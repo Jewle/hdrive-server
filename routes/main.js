@@ -62,7 +62,7 @@ router.get('/file', async (req,res)=>{
 
 
 
-
+    console.log({File})
     if(file.userId._id.toString()===userId.toString() || file.canDownload.includes(userId) || file.isPublic){
         res.json({...file._doc,isOwner:file.userId._id.toString()===userId.toString()})
         return

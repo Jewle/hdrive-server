@@ -29,4 +29,10 @@ router.get('/download/:id', async (req,res)=>{
 
 })
 
+router.get('/test', (req,res)=>{
+    res.json({
+        status:'working!'
+    })
+})
+
 module.exports = router

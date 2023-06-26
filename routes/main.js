@@ -45,18 +45,37 @@ router.get('/files', async (req,res)=>{
 
 
     const id =  req.user._id
-    const files = await File.find({userId:id}, 'originalName type urlUnencoded imgSrc').skip(offset).limit(limit).lean()
-    const currentUser = await User.findById(id,'_id').populate('filesToWatch','originalName type urlUnencoded imgSrc').lean()
-    currentUser.filesToWatch = currentUser.filesToWatch.map(f=>{
-        f.displayType = 'observable'
-        return f
-    }) 
-    const countOwnersFiles = await File.countDocuments({userId:id})
-    const countObservableFiles = currentUser.filesToWatch.length
-    const pages = Math.ceil(countOwnersFiles+countObservableFiles/limit)
+    // const files = await File.find({userId:id}, 'originalName type urlUnencoded imgSrc')
+    //     .skip(offset)
+    //     .limit(limit)
+    //     .lean()
+
+    const files = await File.find(
+        {$or:[
+            {userId:id},
+            {canDownload:{$in:[id]}}
+        ]}, 'originalName type urlUnencoded imgSrc userId')
+        .skip(offset)
+        .limit(limit)
+        .lean()
+        .map(file=>{
+            console.log(file)
+            if (file.userId !== id) {
+                file.displayType = 'observable'
+            }
+            return file
+        })
 
 
-    res.json({files:[...files,...currentUser.filesToWatch],pages})
+    const countOwnersFiles = await File.countDocuments({$or:[
+            {userId:id},
+            {canDownload:{$in:[id]}}
+        ]})
+
+    const pages = Math.ceil((countOwnersFiles)/limit)
+
+
+    res.json({files:[...files],pages})
 })
 //fix little bit
 router.get('/file', async (req,res)=>{

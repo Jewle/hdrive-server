@@ -6,7 +6,7 @@ const upload =  fileUpload.single('file')
 const path = require('path')
 const fs = require('fs')
 const Folder = require('../models/Folder')
-const {mapHtml, createPlaceholder, deleteFiles, computeFolderSize, sizeHandler} = require('./main.functions')
+const {mapHtml, generateObservableFolder, createPlaceholder, deleteFiles, computeFolderSize, sizeHandler} = require('./main.functions')
 const User= require('../models/User')
 const WordExtractor = require("word-extractor");
 const extractor = new WordExtractor();
@@ -50,17 +50,16 @@ router.get('/files', async (req,res)=>{
     //     .limit(limit)
     //     .lean()
 
-    const files = await File.find(
+    let files = await File.find(
         {$or:[
             {userId:id},
             {canDownload:{$in:[id]}}
-        ]}, 'originalName type urlUnencoded imgSrc userId')
+        ]}, 'originalName authorName type urlUnencoded imgSrc userId')
         .skip(offset)
         .limit(limit)
         .lean()
-        .map(file=>{
-            console.log(file)
-            if (file.userId !== id) {
+       files = files.map(file=>{
+            if (file.userId?.toString() !== id.toString()) {
                 file.displayType = 'observable'
             }
             return file
@@ -79,19 +78,25 @@ router.get('/files', async (req,res)=>{
 })
 //fix little bit
 router.get('/file', async (req,res)=>{
-    const {id} = req.query
-    const userId =  req.user._id
-    const file = await File.findOne({_id:id}).populate('userId','name _id')
-    const url = path.resolve(file.urlUnencoded)
+    try{
+        const {id} = req.query
+        const userId =  req.user._id
+        const file = await File.findOne({_id:id}).populate('userId','name _id')
+        const url = path.resolve(file.urlUnencoded)
 
 
 
-    console.log({File})
-    if(file.userId._id.toString()===userId.toString() || file.canDownload.includes(userId) || file.isPublic){
-        res.json({...file._doc,isOwner:file.userId._id.toString()===userId.toString()})
-        return
+        console.log({File})
+        if(file.userId._id.toString()===userId.toString() || file.canDownload.includes(userId) || file.isPublic){
+            res.json({...file._doc,isOwner:file.userId._id.toString()===userId.toString()})
+            return
+        }
+        res.status(400).json({msg:'Access denied'})
     }
-    res.status(400).json({msg:'Access denied'})
+    catch(e){
+        res.status(500).json({msg:e.message})
+
+    }
 
 })
 
@@ -116,10 +121,15 @@ router.post('/searchfiles', async (req,res)=>{
     const {query} = req.body
 
     const files = await File.find({
-        originalName:{$regex:query},
-        userId
+        $or:[
+            {originalName:{$regex:query}, userId},
+            {originalName:{$regex:query}, canDownload:{$in:[userId]}}
 
-},'originalName type urlUnencoded imgSrc')
+        ]
+        
+       
+
+},'originalName type urlUnencoded imgSrc').lean()
     if (files) {
         return res.json({files})
     }    
@@ -183,12 +193,20 @@ router.get('/getfolders', async (req,res)=>{
     let folders = await Folder.find({parentFolder:{
         $exists:false
         },userId})
-    let files = await File.find({directory:{$exists:false}, userId})
+    let files = await File.find({directory:{$exists:false},userId}).lean()
+    let observableFiles = await File.find({
+       canDownload:{
+            $in:[userId]
+        }
+    }).lean()
 
-    // console.log({...folders, computeFolderSize(Folder,)})
+
+
+    
     files = mapHtml(files, 'file')
     folders = mapHtml(folders)
-    res.json({html:folders+files})
+    observableFolder = generateObservableFolder(observableFiles)
+    res.json({html:observableFolder+folders+files})
 })
 
 //get folders which parentFolder equals  current folder's id
@@ -209,6 +227,7 @@ router.put('/movetofolder', async (req,res)=>{
     const prevFolderId = req.body.previousFolderId
     const prevFolder = prevFolderId!=='0' ? await Folder.findOne({_id:prevFolderId, userId}) : null
     const currentFile = await File.findOne({_id:fileId,userId})
+    console.log(currentFile)
 
 
 

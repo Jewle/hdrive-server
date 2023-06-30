@@ -30,6 +30,17 @@ function mapHtml(data,type='folder'){
         	</li>`)
         .join('')
     }
+    if(type==='observableFile'){
+        return data.map(f=>`
+            <li 
+            data-role="observablefile" 
+            data-title='${f.name}' 
+            data-fid="${f._id}"
+            >
+                ${f.originalName}
+            </li>`)
+        .join('')
+    }
 } 
 
 function optionsHTML(dirs,fileDir){
@@ -92,6 +103,16 @@ function sizeHandler(bytes,decimals=2) {
 
 }
 
+function generateObservableFolder(files){
+
+    return `<li  data-role="observableFolder" class="folder observable-folder">
+                Observable Folder
+                <ul>
+                   ${mapHtml(files,'observableFile')}
+                </ul>
+            </li>
+    `
+}
 
 async function computeFolderSize(Folder,File,folderId,userId){
     const folder = await Folder.findById(folderId)
@@ -111,4 +132,4 @@ async function computeFolderSize(Folder,File,folderId,userId){
 
 
 
-module.exports ={ mapHtml, createPlaceholder, deleteFiles, computeFolderSize, sizeHandler}
+module.exports ={ mapHtml, createPlaceholder, deleteFiles, computeFolderSize, sizeHandler,generateObservableFolder}
